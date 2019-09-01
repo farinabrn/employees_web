@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: employees_web
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+  
+  employees_web:
+    build:
+      context: ./employees_web
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./employees_web/employees_web:/employees_web
+    depends_on:
+      - mysql

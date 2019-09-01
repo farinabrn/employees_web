@@ -1,4 +1,63 @@
-<h1>{{ employee.name }}</h1>
-{% if error_message %}
-	<p><strong>{{ error_message }}</strong></p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee Details</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+		</head>
+	<body>
+	<div class="container">
+		<br>
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label"></label>
+			<div class="col-sm-4">
+				<h3>Employee Details</h3>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Id:</label>
+			<div class="col-sm-4">
+				{{ employee.id }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Name:</label>
+			<div class="col-sm-4">
+				{{ employee.name }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Email:</label>
+			<div class="col-sm-4">
+				{{ employee.email }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Hiring Date:</label>
+			<div class="col-sm-4">
+				{{ employee.hiring_date }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Salary:</label>
+			<div class="col-sm-4">
+				{{ employee.salary }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Cell Phone:</label>
+			<div class="col-sm-4">
+				{{ employee.cell_phone }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Employee Manager:</label>
+			<div class="col-sm-4">
+				{{ employee.manager }}
+			</div>
+		</div>
+		<a href="{% url 'employees:index' %}">Voltar</a>
+	</div>
+	</body>
+</html>

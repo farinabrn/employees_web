@@ -1,9 +1,41 @@
-{% if employee_list %}
-	<ul>
-	{% for employee in employee_list %}
-		<li><a href="{% url 'employees:detail' employee.id %}">{{ employee.name }}</a></li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>No employees listed.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee Records</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+	</head>
+	<body>
+		{% if employee_list %}
+		<table class="table table-striped table-bordered table-sm">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Cell Phone</th>
+					<th>Salary</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for employee in employee_list %}
+				<tr>
+					<td>{{ employee.id }}</td>
+					<td>{{ employee.name }}</td>
+					<td>{{ employee.email }}</td>
+					<td>{{ employee.cell_phone }}</td>
+					<td>{{ employee.salary }}</td>
+					<td>
+						<a href="{% url 'employees:detail' employee.id %}"><span class="glyphicon glyphicon-pencil" >Details</span></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p>No employees listed.</p>
+		{% endif %}
+	</body>
+</html>

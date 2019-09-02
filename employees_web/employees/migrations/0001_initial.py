@@ -20,13 +20,11 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=254)),
                 ('salary', models.IntegerField(max_length=200)),
                 ('cell_phone', models.IntegerField(max_length=200)),
-                ('deleted', models.BooleanField(default=False)),
             ],
             options={
                 'verbose_name': 'Employee',
                 'verbose_name_plural': 'Employees',
                 'db_table': 'employees',
-                'index_together': {('name', 'deleted')},
             },
         ),
     ]

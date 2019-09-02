@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<title>Employee Listing</title>
 		<meta charset="UTF-8">
-		<title>Employee Records</title>
-		{% load staticfiles %}
-		<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		{% if employee_list %}
-		<table class="table table-striped table-bordered table-sm">
-			<thead class="thead-dark">
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Cell Phone</th>
-					<th>Salary</th>
-					<th>Managed Count</th>
-					<th>Managed Salary</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for employee in employee_list %}
-				<tr>
-					<td>{{ employee.id }}</td>
-					<td>{{ employee.name }}</td>
-					<td>{{ employee.email }}</td>
-					<td>{{ employee.cell_phone }}</td>
-					<td>{{ employee.salary }}</td>
-					<td>{{ employee.get_managed_count }}</td>
-					<td>{{ employee.get_managed_salary }}</td>
-					<td>
-						<a href="{% url 'employees:detail' employee.id %}"><span class="glyphicon glyphicon-pencil" >Details</span></a>
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		{% else %}
-		<p>No employees listed.</p>
-		{% endif %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Employee Listing</h1>
+				</div>
+			</div>
+			<div class="row">
+				<dov class="col-md-12">
+					{% if employee_list %}
+					<table class="table table-striped table-bordered table-sm">
+						<thead class="thead-inverse">
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Cell Phone</th>
+								<th>Salary</th>
+								<th>Role</th>
+								<th>Manager</th>
+								<th>Managed Count</th>
+								<th>Managed Salary</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody class='table-striped'>
+							{% for employee in employee_list %}
+							<tr>
+								<td>{{ employee.id }}</td>
+								<td>{{ employee.name }}</td>
+								<td>{{ employee.email }}</td>
+								<td>{{ employee.cell_phone }}</td>
+								<td>{{ employee.salary }}</td>
+								<td>{{ employee.get_role_display.capitalize }}</td>
+								<td>{{ employee.manager }}</td>
+								<td>{{ employee.get_managed_count }}</td>
+								<td>{{ employee.get_managed_salary }}</td>
+								<td>
+									<a href="{% url 'employees:detail' employee.id %}"><span class="glyphicon glyphicon-pencil" >Details</span></a>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% else %}
+					<p>No employees listed.</p>
+					{% endif %}
+
+				</dov>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	</body>
 </html>

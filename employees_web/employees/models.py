@@ -4,12 +4,25 @@ import json
 # Create your models here.
 
 class Employee(models.Model):
+	STANDARD = 'STD'
+	MANAGER = 'MGR'
+	SR_MANAGER = 'SRMGR'
+	PRESIDENT = 'PRES'
+
+	EMPLOYEE_TYPES = (
+		(STANDARD, 'base employee'),
+		(MANAGER, 'manager'),
+		(SR_MANAGER, 'senior manager'),
+		(PRESIDENT, 'president')
+	)
+
 	name = models.CharField(max_length=200)
 	hiring_date = models.DateTimeField('hiring date')
 	email = models.EmailField() 
 	salary = models.IntegerField()
 	cell_phone = models.IntegerField()
-	manager = models.ForeignKey('self', null=True, on_delete=models.SET_NULL, related_name='subordinate')
+	role = models.CharField(max_length=25, choices=EMPLOYEE_TYPES, default=STANDARD)
+	manager = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='subordinate')
 
 	def __str__(self):
 		return self.name

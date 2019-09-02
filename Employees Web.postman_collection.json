@@ -40,7 +40,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\n        \"name\": \"F\",\n        \"hiring_date\": \"2019-09-01T17:57:07Z\",\n        \"email\": \"F@c.com\",\n        \"salary\": 300,\n        \"cell_phone\": 999999,\n        \"manager\": 3\n    }"
+					"raw": "    {\n        \"name\": \"F\",\n        \"hiring_date\": \"2019-09-01T17:57:07Z\",\n        \"email\": \"F@c.com\",\n        \"salary\": 300,\n        \"cell_phone\": 999999,\n        \"role\": \"STD\",\n        \"parent\": 3\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:8000/api/employees/",

@@ -4,7 +4,7 @@ from .models import Employee
 class EmployeeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Employee
-		fields = ('name', 'hiring_date', 'email', 'salary', 'cell_phone', 'manager')
+		fields = ('name', 'hiring_date', 'email', 'salary', 'cell_phone', 'role', 'parent')
 
 		def create(self, validated_data):
 			return Employee.objects.create(**validated_data)
@@ -15,7 +15,8 @@ class EmployeeSerializer(serializers.ModelSerializer):
 			instance.email = validated_data.get('email', instance.email)
 			instance.salary = validated_data.get('salary', instance.salary)
 			instance.cell_phone = validated_data.get('cell_phone', instance.cell_phone)
-			instance.manager = validated_data.get('manager', instance.manager)
+			instance.role = validated_data.get('role', instance.role)
+			instance.parent = validated_data.get('parent', instance.parent)
 
 			instance.save()
 			return instance

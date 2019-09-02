@@ -9,13 +9,38 @@ class Employee(models.Model):
 	email = models.EmailField() 
 	salary = models.IntegerField()
 	cell_phone = models.IntegerField()
-	manager = models.ForeignKey("self", on_delete=models.SET_NULL, related_name='self', null=True)
+	manager = models.ForeignKey('self', null=True, on_delete=models.SET_NULL, related_name='subordinate')
 
 	def __str__(self):
 		return self.name
 
-	def total_managed_salary(self):
-		return self.salary + 1
+	def get_managed_count(self, id=None):
+		if id is None:
+			id = self.id
+
+		managed_list = Employee.objects.filter(manager=self)
+		managed_count=0
+		for employee in managed_list:
+			managed_count+=employee.get_managed_count(id)
+
+		if self.id != id:
+			managed_count+=1
+
+		return managed_count
+
+	def get_managed_salary(self, id=None):
+		if id is None:
+			id = self.id
+
+		managed_list = Employee.objects.filter(manager=self)
+		managed_salary=0
+		for employee in managed_list:
+			managed_salary+=employee.get_managed_salary(id)
+
+		if self.id != id:
+			managed_salary+=self.salary
+
+		return managed_salary
 	
 	def toJSON(self):
 	        return json.dumps(self, default=lambda o: o.__dict__, 

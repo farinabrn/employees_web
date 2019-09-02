@@ -16,6 +16,8 @@
 					<th>Email</th>
 					<th>Cell Phone</th>
 					<th>Salary</th>
+					<th>Managed Count</th>
+					<th>Managed Salary</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -27,6 +29,8 @@
 					<td>{{ employee.email }}</td>
 					<td>{{ employee.cell_phone }}</td>
 					<td>{{ employee.salary }}</td>
+					<td>{{ employee.get_managed_count }}</td>
+					<td>{{ employee.get_managed_salary }}</td>
 					<td>
 						<a href="{% url 'employees:detail' employee.id %}"><span class="glyphicon glyphicon-pencil" >Details</span></a>
 					</td>
